@@ -2,9 +2,11 @@ FROM python:3
 
 MAINTAINER crivmar
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/
 
 ADD django_tutorial /usr/src/app
+
+ADD cambios.bash /usr/src/app
 
 RUN mkdir static && chmod +x /usr/src/app/cambios.bash && pip install django mysqlclient
 
