@@ -14,7 +14,7 @@ pipeline {
             stages {
                 stage('Clonar repositorio') {
                     steps {
-                        git branch:'main',url:'https://github.com/crivmar/django_tutorial.git'
+                        git branch:'master',url:'https://github.com/crivmar/django_tutorial.git'
                     }
                 }
                 stage('Instalar requerimientos') {
