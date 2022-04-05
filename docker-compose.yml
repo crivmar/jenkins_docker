@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  app-django:
+    container_name: app-django2
+    image: crivmar/django:latest
+    restart: always
+    environment:
+      AUTORIZADOS: "*"
+      HOST: mariadb
+      USUARIO: django
+      CONTRA: 12345
+      BD: django
+      DJANGO_SUPERUSER_PASSWORD: 12345
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_EMAIL: admin@falso.es
+    ports:
+      - 8686:9000
+    depends_on:
+      - db
+  db:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: 12345
+    volumes:
+      - mariadb_data:/var/lib/mysql
+volumes:
+    mariadb_data:
