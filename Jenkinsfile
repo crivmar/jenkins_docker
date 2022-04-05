@@ -60,6 +60,14 @@ pipeline {
                         sh "docker rmi $IMAGEN:latest"
                     }
                 }
+                stage('Conexión SSH'){
+                    steps{
+                        sshagent(credentials : ['SSH']) {
+                            sh 'ssh -o StrictHostKeyChecking=no root@gilgamesh.crivmar.com wget https://raw.githubusercontent.com/crivmar/jenkins_docker/main/docker-compose.yml -O docker-compose.yml'
+                            sh 'ssh -o StrictHostKeyChecking=no root@gilgamesh.crivmar.com docker-compose up -d --force-recreate'
+                        }
+                    }
+                }                         
             }
         }           
     }
